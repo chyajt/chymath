@@ -161,4 +161,9 @@ namespace chymath
 	{
 		return rhs / scalar;
 	}
+
+	Vector3D CrossProduct(const Vector3D& lhs, const Vector3D& rhs)
+	{
+		return Vector3D(lhs.Y * rhs.Z - lhs.Z * rhs.Y, lhs.Z * rhs.X - lhs.X  * rhs.Z, lhs.X * rhs.Y - lhs.Y * rhs.X);
+	}
 }
