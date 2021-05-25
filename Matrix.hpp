@@ -63,18 +63,66 @@ namespace chymath
 		std::vector<std::vector<int>> Mtrx;
 	};
 
-	Matrix operator+(const Matrix& lhs, const Matrix& rhs)
+	const Matrix& operator+(const Matrix& lhs, const Matrix& rhs)
 	{
-		return const_cast<Matrix&>(lhs) += rhs;
+		Matrix matrix(lhs.Row, lhs.Column);
+
+		for (int i = 0; i < matrix.Row; ++i)
+		{
+			for (int j = 0; j < matrix.Column; ++j)
+			{
+				matrix.Mtrx[i][j] = lhs.Mtrx[i][j] + rhs.Mtrx[i][j];
+			}
+		}
+
+		return matrix;
 	}
 
-	Matrix operator-(const Matrix& lhs, const Matrix& rhs)
+	const Matrix& operator-(const Matrix& lhs, const Matrix& rhs)
 	{
-		return const_cast<Matrix&>(lhs) -= rhs;
+		Matrix matrix(lhs.Row, lhs.Column);
+
+		for (int i = 0; i < matrix.Row; ++i)
+		{
+			for (int j = 0; j < matrix.Column; ++j)
+			{
+				matrix.Mtrx[i][j] = lhs.Mtrx[i][j] + rhs.Mtrx[i][j];
+			}
+		}
+
+		return matrix;
 	}
 
-	Matrix operator*(const Matrix& lhs, double scalar)
+	const Matrix& operator*(const Matrix& lhs, double scalar)
 	{
-		return const_cast<Matrix&>(lhs) *= scalar;
+		Matrix matrix(lhs);
+
+		for (int i = 0; i < matrix.Row; ++i)
+		{
+			for (int j = 0; j < matrix.Column; ++j)
+			{
+				matrix.Mtrx[i][j] *= scalar;
+			}
+		}
+
+		return matrix;
+	}
+
+	const Matrix& operator*(const Matrix& lhs, const Matrix& rhs)
+	{
+		Matrix matrix(lhs.Mtrx.size(), rhs.Mtrx[0].size());
+
+		for (int i = 0; i < lhs.Mtrx.size(); ++i)
+		{
+			for (int j = 0; j < rhs.Mtrx[0].size(); ++j)
+			{
+				for (int k = 0; k < lhs.Mtrx[0].size(); ++k)
+				{
+					matrix.Mtrx[i][j] += lhs.Mtrx[i][k] * rhs.Mtrx[k][j];
+				}
+			}
+		}
+
+		return matrix;
 	}
 }
