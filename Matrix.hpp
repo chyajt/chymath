@@ -63,7 +63,7 @@ namespace chymath
 		std::vector<std::vector<int>> Mtrx;
 	};
 
-	const Matrix& operator+(const Matrix& lhs, const Matrix& rhs)
+	Matrix operator+(const Matrix& lhs, const Matrix& rhs)
 	{
 		Matrix matrix(lhs.Row, lhs.Column);
 
@@ -78,7 +78,7 @@ namespace chymath
 		return matrix;
 	}
 
-	const Matrix& operator-(const Matrix& lhs, const Matrix& rhs)
+	Matrix operator-(const Matrix& lhs, const Matrix& rhs)
 	{
 		Matrix matrix(lhs.Row, lhs.Column);
 
@@ -93,7 +93,7 @@ namespace chymath
 		return matrix;
 	}
 
-	const Matrix& operator*(const Matrix& lhs, double scalar)
+	Matrix operator*(const Matrix& lhs, double scalar)
 	{
 		Matrix matrix(lhs);
 
@@ -108,7 +108,7 @@ namespace chymath
 		return matrix;
 	}
 
-	const Matrix& operator*(const Matrix& lhs, const Matrix& rhs)
+	Matrix operator*(const Matrix& lhs, const Matrix& rhs)
 	{
 		Matrix matrix(lhs.Mtrx.size(), rhs.Mtrx[0].size());
 
