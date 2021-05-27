@@ -83,6 +83,16 @@ namespace chymath
 		return rhs * scalar;
 	}
 
+	double GetSpeed(const Vector2D& velocity)
+	{
+		return velocity.Size();
+	}
+
+	Vector2D GetDirection(const Vector2D& velocity)
+	{
+		return Vector2D(velocity.X / velocity.Size(), velocity.Y / velocity.Size());
+	}
+
 	class Vector3D
 	{
 	public:
@@ -164,6 +174,6 @@ namespace chymath
 
 	Vector3D CrossProduct(const Vector3D& lhs, const Vector3D& rhs)
 	{
-		return Vector3D(lhs.Y * rhs.Z - lhs.Z * rhs.Y, lhs.Z * rhs.X - lhs.X  * rhs.Z, lhs.X * rhs.Y - lhs.Y * rhs.X);
+		return Vector3D(lhs.Y * rhs.Z - lhs.Z * rhs.Y, lhs.Z * rhs.X - lhs.X * rhs.Z, lhs.X * rhs.Y - lhs.Y * rhs.X);
 	}
 }
