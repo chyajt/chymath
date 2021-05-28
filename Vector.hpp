@@ -93,6 +93,11 @@ namespace chymath
 		return Vector2D(velocity.X / velocity.Size(), velocity.Y / velocity.Size());
 	}
 
+	Vector2D Lerp(const Vector2D& lhs, const Vector2D& rhs, double delta)
+	{
+		return Vector2D(lhs + (rhs - lhs) * delta);
+	}
+
 	class Vector3D
 	{
 	public:
