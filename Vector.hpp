@@ -10,7 +10,7 @@ namespace chymath
 		Vector2D(double x = 0.f, double y = 0.f) : X(x), Y(y) {}
 
 		double Size() const { return sqrt(X * X + Y * Y); }
-		void Normalize() { X /= Size(); Y /= Size(); }
+		Vector2D& Normalize() { X /= Size(); Y /= Size(); }
 
 		Vector2D& operator+=(const Vector2D& rhs)
 		{
@@ -83,19 +83,14 @@ namespace chymath
 		return rhs * scalar;
 	}
 
-	double GetSpeed(const Vector2D& velocity)
-	{
-		return velocity.Size();
-	}
-
-	Vector2D GetDirection(const Vector2D& velocity)
-	{
-		return Vector2D(velocity.X / velocity.Size(), velocity.Y / velocity.Size());
-	}
-
 	Vector2D Lerp(const Vector2D& lhs, const Vector2D& rhs, double delta)
 	{
 		return Vector2D(lhs + (rhs - lhs) * delta);
+	}
+
+	double RadianBetween(const Vector2D& lhs, const Vector2D& rhs)
+	{
+		return acos(lhs * rhs) / (lhs.Size() * rhs.Size());
 	}
 
 	class Vector3D
