@@ -88,6 +88,11 @@ namespace chymath
 		return Vector2D(lhs + (rhs - lhs) * delta);
 	}
 
+	Vector2D Reflect(const Vector2D& v, const Vector2D& n)
+	{
+		return v - 2.f * v * n * n;
+	}
+
 	double RadianBetween(const Vector2D& lhs, const Vector2D& rhs)
 	{
 		return acos(lhs * rhs) / (lhs.Size() * rhs.Size());
