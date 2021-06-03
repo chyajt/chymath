@@ -58,6 +58,19 @@ namespace chymath
 			return *this;
 		}
 
+		Matrix& operator/=(double scalar)
+		{
+			for (int i = 0; i < Row; ++i)
+			{
+				for (int j = 0; j < Column; ++j)
+				{
+					Mtrx[i][j] /= scalar;
+				}
+			}
+
+			return *this;
+		}
+
 		int Row;
 		int Column;
 		std::vector<std::vector<int>> Mtrx;
@@ -120,6 +133,21 @@ namespace chymath
 				{
 					matrix.Mtrx[i][j] += lhs.Mtrx[i][k] * rhs.Mtrx[k][j];
 				}
+			}
+		}
+
+		return matrix;
+	}
+
+	Matrix operator/(const Matrix& lhs, double scalar)
+	{
+		Matrix matrix(lhs);
+
+		for (int i = 0; i < matrix.Row; ++i)
+		{
+			for (int j = 0; j < matrix.Column; ++j)
+			{
+				matrix.Mtrx[i][j] /= scalar;
 			}
 		}
 
