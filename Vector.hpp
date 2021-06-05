@@ -83,6 +83,31 @@ namespace chymath
 		return rhs * scalar;
 	}
 
+	bool operator==(const Vector2D& lhs, const Vector2D& rhs)
+	{
+		return lhs.X == rhs.X && lhs.Y == rhs.Y;
+	}
+
+	bool operator>(const Vector2D& lhs, const Vector2D& rhs)
+	{
+		return lhs.Size() > rhs.Size();
+	}
+
+	bool operator>=(const Vector2D& lhs, const Vector2D& rhs)
+	{
+		return lhs.Size() >= rhs.Size();
+	}
+
+	bool operator<(const Vector2D& lhs, const Vector2D& rhs)
+	{
+		return lhs.Size() < rhs.Size();
+	}
+
+	bool operator<=(const Vector2D& lhs, const Vector2D& rhs)
+	{
+		return lhs.Size() <= rhs.Size();
+	}
+
 	Vector2D Lerp(const Vector2D& lhs, const Vector2D& rhs, double delta)
 	{
 		return Vector2D(lhs + (rhs - lhs) * delta);
@@ -175,6 +200,31 @@ namespace chymath
 	Vector3D operator/(double scalar, const Vector3D& rhs)
 	{
 		return rhs / scalar;
+	}
+
+	bool operator==(const Vector3D& lhs, const Vector3D& rhs)
+	{
+		return lhs.X == rhs.X && lhs.Y == rhs.Y && lhs.Z == rhs.Z;
+	}
+
+	bool operator>(const Vector3D& lhs, const Vector3D& rhs)
+	{
+		return lhs.Size() > rhs.Size();
+	}
+
+	bool operator>=(const Vector3D & lhs, const Vector3D & rhs)
+	{
+		return lhs.Size() >= rhs.Size();
+	}
+
+	bool operator<(const Vector3D& lhs, const Vector3D& rhs)
+	{
+		return lhs.Size() < rhs.Size();
+	}
+
+	bool operator<=(const Vector3D& lhs, const Vector3D& rhs)
+	{
+		return lhs.Size() <= rhs.Size();
 	}
 
 	Vector3D CrossProduct(const Vector3D& lhs, const Vector3D& rhs)
