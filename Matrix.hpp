@@ -121,6 +121,11 @@ namespace chymath
 		return matrix;
 	}
 
+	Matrix operator*(double scalar, const Matrix& rhs)
+	{
+		return rhs * scalar;
+	}
+
 	Matrix operator*(const Matrix& lhs, const Matrix& rhs)
 	{
 		Matrix matrix(lhs.Mtrx.size(), rhs.Mtrx[0].size());
@@ -152,5 +157,10 @@ namespace chymath
 		}
 
 		return matrix;
+	}
+
+	Matrix operator/(double scalar, const Matrix& rhs)
+	{
+		return rhs * scalar;
 	}
 }
