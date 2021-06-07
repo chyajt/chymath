@@ -163,4 +163,9 @@ namespace chymath
 	{
 		return rhs * scalar;
 	}
+
+	bool operator==(const Matrix& lhs, const Matrix& rhs)
+	{
+		return lhs.Mtrx == rhs.Mtrx;
+	}
 }
