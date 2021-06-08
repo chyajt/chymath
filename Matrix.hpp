@@ -71,6 +71,18 @@ namespace chymath
 			return *this;
 		}
 
+		static const Matrix& IdentityMatrix(int size)
+		{
+			Matrix matrix(size, size);
+
+			for (int i = 0; i < size; ++i)
+			{
+				matrix.Mtrx[i][i] = 1;
+			}
+
+			return matrix;
+		}
+
 		int Row;
 		int Column;
 		std::vector<std::vector<int>> Mtrx;
