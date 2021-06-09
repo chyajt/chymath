@@ -71,6 +71,21 @@ namespace chymath
 			return *this;
 		}
 
+		const Matrix& TransposedMatrix()
+		{
+			Matrix matrix(Column, Row);
+
+			for (int i = 0; i < Column; ++i)
+			{
+				for (int j = 0; j < Row; ++j)
+				{
+					matrix.Mtrx[i][j] = Mtrx[j][i];
+				}
+			}
+
+			return matrix;
+		}
+
 		static const Matrix& IdentityMatrix(int size)
 		{
 			Matrix matrix(size, size);
