@@ -7,16 +7,7 @@ namespace chymath
 	class Matrix
 	{
 	public:
-		Matrix(int row, int column) : Row(row), Column(column)
-		{
-			Mtrx.reserve(row);
-
-			for (auto r : Mtrx)
-			{
-				r.reserve(column);
-			}
-		}
-
+		Matrix(int row, int column) : Row(row), Column(column), Mtrx(row, std::vector<int>(column)) {}
 		Matrix(const std::vector<std::vector<int>>& mtrx) : Row(mtrx.size()), Column(mtrx[0].size()), Mtrx(mtrx) {}
 
 		Matrix& operator+=(const Matrix& rhs)
@@ -71,7 +62,7 @@ namespace chymath
 			return *this;
 		}
 
-		const Matrix& TransposedMatrix()
+		const Matrix& Transposed()
 		{
 			Matrix matrix(Column, Row);
 
@@ -86,9 +77,35 @@ namespace chymath
 			return matrix;
 		}
 
-		static const Matrix& IdentityMatrix(int size)
+		int Row;
+		int Column;
+		std::vector<std::vector<int>> Mtrx;
+	};
+
+	class SquareMatrix : public Matrix
+	{
+	public:
+		SquareMatrix(int size) : Matrix(size, size) {}
+		SquareMatrix(std::vector<std::vector<int>> matrix) : Matrix(matrix) {}
+
+		const SquareMatrix& Inverse()
 		{
-			Matrix matrix(size, size);
+			SquareMatrix matrix(Row);
+
+			for (int i = 0; i < Row; ++i)
+			{
+				for (int j = 0; j < Column; ++j)
+				{
+					matrix.Mtrx[i][j] = (i == j ? 1 / Mtrx[i][j] : 0);
+				}
+			}
+
+			return matrix;
+		}
+
+		static const SquareMatrix& IdentityMatrix(int size)
+		{
+			SquareMatrix matrix(size);
 
 			for (int i = 0; i < size; ++i)
 			{
@@ -97,10 +114,6 @@ namespace chymath
 
 			return matrix;
 		}
-
-		int Row;
-		int Column;
-		std::vector<std::vector<int>> Mtrx;
 	};
 
 	Matrix operator+(const Matrix& lhs, const Matrix& rhs)
