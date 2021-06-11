@@ -88,6 +88,11 @@ namespace chymath
 		return lhs.X == rhs.X && lhs.Y == rhs.Y;
 	}
 
+	bool operator!=(const Vector2D& lhs, const Vector2D& rhs)
+	{
+		return lhs.X != rhs.X && lhs.Y != rhs.Y;
+	}
+
 	bool operator>(const Vector2D& lhs, const Vector2D& rhs)
 	{
 		return lhs.Size() > rhs.Size();
@@ -207,12 +212,17 @@ namespace chymath
 		return lhs.X == rhs.X && lhs.Y == rhs.Y && lhs.Z == rhs.Z;
 	}
 
+	bool operator!=(const Vector3D& lhs, const Vector3D& rhs)
+	{
+		return lhs.X != rhs.X && lhs.Y != rhs.Y && lhs.Z != rhs.Z;
+	}
+
 	bool operator>(const Vector3D& lhs, const Vector3D& rhs)
 	{
 		return lhs.Size() > rhs.Size();
 	}
 
-	bool operator>=(const Vector3D & lhs, const Vector3D & rhs)
+	bool operator>=(const Vector3D& lhs, const Vector3D& rhs)
 	{
 		return lhs.Size() >= rhs.Size();
 	}
