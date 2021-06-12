@@ -208,4 +208,9 @@ namespace chymath
 	{
 		return lhs.Mtrx == rhs.Mtrx;
 	}
+
+	bool operator!=(const Matrix& lhs, const Matrix& rhs)
+	{
+		return lhs.Mtrx != rhs.Mtrx;
+	}
 }
