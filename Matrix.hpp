@@ -62,19 +62,19 @@ namespace chymath
 			return *this;
 		}
 
-		const Matrix& Transposed()
+		static const Matrix& Transposed(const Matrix& matrix)
 		{
-			Matrix matrix(Column, Row);
+			Matrix transposed(matrix.Column, matrix.Row);
 
-			for (int i = 0; i < Column; ++i)
+			for (int i = 0; i < transposed.Column; ++i)
 			{
-				for (int j = 0; j < Row; ++j)
+				for (int j = 0; j < transposed.Row; ++j)
 				{
-					matrix.Mtrx[i][j] = Mtrx[j][i];
+					transposed.Mtrx[i][j] = matrix.Mtrx[j][i];
 				}
 			}
 
-			return matrix;
+			return transposed;
 		}
 
 		int Row;
@@ -88,19 +88,19 @@ namespace chymath
 		SquareMatrix(int size) : Matrix(size, size) {}
 		SquareMatrix(std::vector<std::vector<int>> matrix) : Matrix(matrix) {}
 
-		const SquareMatrix& Inverse()
+		static const SquareMatrix& Inverse(const SquareMatrix& matrix)
 		{
-			SquareMatrix matrix(Row);
+			SquareMatrix inverse(matrix.Row);
 
-			for (int i = 0; i < Row; ++i)
+			for (int i = 0; i < inverse.Row; ++i)
 			{
-				for (int j = 0; j < Column; ++j)
+				for (int j = 0; j < inverse.Column; ++j)
 				{
-					matrix.Mtrx[i][j] = (i == j ? 1 / Mtrx[i][j] : 0);
+					inverse.Mtrx[i][j] = (i == j ? 1 / matrix.Mtrx[i][j] : 0);
 				}
 			}
 
-			return matrix;
+			return inverse;
 		}
 
 		static const SquareMatrix& IdentityMatrix(int size)
