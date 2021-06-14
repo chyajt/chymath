@@ -10,6 +10,15 @@ namespace chymath
 		Matrix(int row, int column) : Row(row), Column(column), Mtrx(row, std::vector<int>(column)) {}
 		Matrix(const std::vector<std::vector<int>>& mtrx) : Row(mtrx.size()), Column(mtrx[0].size()), Mtrx(mtrx) {}
 
+		Matrix& operator=(const Matrix& rhs)
+		{
+			Row = rhs.Row;
+			Column = rhs.Column;
+			Mtrx = rhs.Mtrx;
+
+			return *this;
+		}
+
 		Matrix& operator+=(const Matrix& rhs)
 		{
 			for (int i = 0; i < Row; ++i)
