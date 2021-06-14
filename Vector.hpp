@@ -12,6 +12,14 @@ namespace chymath
 		double Size() const { return sqrt(X * X + Y * Y); }
 		Vector2D& Normalize() { X /= Size(); Y /= Size(); }
 
+		Vector2D& operator=(const Vector2D& rhs)
+		{
+			X = rhs.X;
+			Y = rhs.Y;
+
+			return *this;
+		}
+
 		Vector2D& operator+=(const Vector2D& rhs)
 		{
 			X = rhs.X;
@@ -135,6 +143,15 @@ namespace chymath
 
 		double Size() const { return sqrt(X * X + Y * Y + Z * Z); }
 		void Normalize() { X /= Size(); Y /= Size(); Z /= Size(); }
+
+		Vector3D& operator=(const Vector3D& rhs)
+		{
+			X = rhs.X;
+			Y = rhs.Y;
+			Z = rhs.Z;
+
+			return *this;
+		}
 
 		Vector3D& operator+=(const Vector3D& rhs)
 		{
