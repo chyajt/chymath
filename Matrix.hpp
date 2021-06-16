@@ -1,14 +1,15 @@
 #pragma once
 
 #include <vector>
+#include <cmath>
 
 namespace chymath
 {
 	class Matrix
 	{
 	public:
-		Matrix(int row, int column) : Row(row), Column(column), Mtrx(row, std::vector<int>(column)) {}
-		Matrix(const std::vector<std::vector<int>>& mtrx) : Row(mtrx.size()), Column(mtrx[0].size()), Mtrx(mtrx) {}
+		Matrix(int row, int column) : Row(row), Column(column), Mtrx(row, std::vector<double>(column)) {}
+		Matrix(const std::vector<std::vector<double>>& mtrx) : Row(mtrx.size()), Column(mtrx[0].size()), Mtrx(mtrx) {}
 
 		Matrix& operator=(const Matrix& rhs)
 		{
@@ -71,7 +72,7 @@ namespace chymath
 			return *this;
 		}
 
-		static const Matrix& Transposed(const Matrix& matrix)
+		static const Matrix& TransposedMatrix(const Matrix& matrix)
 		{
 			Matrix transposed(matrix.Column, matrix.Row);
 
@@ -88,16 +89,16 @@ namespace chymath
 
 		int Row;
 		int Column;
-		std::vector<std::vector<int>> Mtrx;
+		std::vector<std::vector<double>> Mtrx;
 	};
 
 	class SquareMatrix : public Matrix
 	{
 	public:
 		SquareMatrix(int size) : Matrix(size, size) {}
-		SquareMatrix(std::vector<std::vector<int>> matrix) : Matrix(matrix) {}
+		SquareMatrix(std::vector<std::vector<double>> matrix) : Matrix(matrix) {}
 
-		static const SquareMatrix& Inverse(const SquareMatrix& matrix)
+		static const SquareMatrix& InverseMatrix(const SquareMatrix& matrix)
 		{
 			SquareMatrix inverse(matrix.Row);
 
@@ -210,7 +211,7 @@ namespace chymath
 
 	Matrix operator/(double scalar, const Matrix& rhs)
 	{
-		return rhs * scalar;
+		return rhs / scalar;
 	}
 
 	bool operator==(const Matrix& lhs, const Matrix& rhs)
@@ -221,5 +222,17 @@ namespace chymath
 	bool operator!=(const Matrix& lhs, const Matrix& rhs)
 	{
 		return lhs.Mtrx != rhs.Mtrx;
+	}
+
+	const Matrix& RotatePosition2D(double x, double y, double theta)
+	{
+		Matrix Position(std::vector<std::vector<double>>(2, { {x}, {y} }));
+		Matrix Rotation(std::vector<std::vector<double>>(2, std::vector<double>(2)));
+
+		Rotation.Mtrx[0][0] = Rotation.Mtrx[1][1] = cos(theta);
+		Rotation.Mtrx[0][1] = -sin(theta);
+		Rotation.Mtrx[1][0] = sin(theta);
+
+		return Rotation * Position;
 	}
 }
